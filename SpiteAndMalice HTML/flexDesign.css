@@ -1,0 +1,299 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* 10px / 16px = 0.625 = 62.5% */
+  /* Percentage of user's browser font-size setting */
+  /* 1rem = 10px, different than the default where 1rem = 16px */
+  font-size: 62.5%;
+}
+
+body {
+  background-color: pink;
+  font-family: sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  color: #555;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/*THE GRID*/
+
+.playing-area {
+  /* background-color: pink; */
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 3fr 2fr 3fr;
+  padding: 5rem 5rem;
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
+}
+
+/* OPPONENT */
+
+.cards-available-opponent {
+  background-color: salmon;
+  /* height: 50%;
+  width: 75%; */
+  display: flex;
+  /* align-items: center;
+  justify-content: center; */
+  flex-direction: row;
+  position: absolute;
+  left: 6rem;
+  top: -22px;
+  right: 0;
+}
+
+.card-to-go-opponent {
+  position: absolute;
+  bottom: -22px;
+}
+
+.opponent-cards-left-position {
+  bottom: -1rem;
+}
+
+.eticheta-nume-design {
+  background-color: lawngreen;
+  position: absolute;
+  width: 28rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.opponent-eticheta-nume-position {
+  top: -15px;
+}
+
+/* 1ST AND 3RD LINE OF THE GRID*/
+.one {
+  background-color: yellow;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.three {
+  background-color: yellow;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* COMMON PARTS FOR BOTH PLAYERS*/
+
+.player-hand {
+  background-color: orange;
+  /* height: 75%; */
+  width: 36rem;
+  aspect-ratio: 2/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.second-card {
+  position: absolute;
+  left: 4rem;
+}
+
+.third-card {
+  position: absolute;
+  left: 8rem;
+}
+
+.fourth-card {
+  position: absolute;
+  left: 12rem;
+}
+
+.fiftth-card {
+  position: absolute;
+  left: 16rem;
+}
+
+.stock-card {
+  background-color: greenyellow;
+  /* min-height: 13rem;
+  min-width: 8rem; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* height: 75%; */
+  width: 8rem;
+  aspect-ratio: 1/1.4;
+  border: 2px solid black;
+  border-radius: 5px;
+  /* background-image: url('Photos/cardbackground.jpg'); */
+}
+
+.cards-left-design {
+  background-color: olivedrab;
+  position: absolute;
+  width: 9rem;
+  height: 2rem;
+  /* top: 50%; */
+
+  border: 2px solid black;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.side-stack {
+  background-color: peachpuff;
+  /* height: 75%; */
+  width: 8rem;
+  aspect-ratio: 1/2.3;
+  position: relative;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.number-of-side-stack {
+  background-color: paleturquoise;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* left: 0;
+  bottom: 0; */
+  border-radius: 50%;
+  height: 2.5rem;
+  width: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black;
+}
+
+/* CENTER LINE*/
+
+.two {
+  background-color: green;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  justify-content: space-around;
+  /* gap: 10rem; */
+  /* flex-wrap: wrap; */
+}
+
+.empty-space {
+  background-color: blueviolet;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+  aspect-ratio: 1/1;
+  position: relative;
+  /* height: 80%; */
+}
+
+.div-copy-of-player-hand {
+  background-color: pink;
+  /* height: 75%; */
+  width: 36rem;
+  aspect-ratio: 2/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+/* .proba {
+  background-color: red;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 80%;
+  aspect-ratio: 1/1.4;
+} */
+
+.space {
+  background-color: azure;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10rem;
+}
+
+.center-stack {
+  background-color: aqua;
+  position: relative;
+}
+
+.card-to-go {
+  background-color: plum;
+  height: 50%;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* PLAYER*/
+
+.cards-available-player {
+  background-color: salmon;
+  /* height: 50%;
+  width: 75%; */
+  display: flex;
+  /* align-items: center;
+  justify-content: center; */
+  flex-direction: row;
+  position: absolute;
+  left: 6rem;
+  bottom: -22px;
+  right: 0;
+}
+
+.card-to-go-player {
+  position: absolute;
+  /* bottom: -22px; */
+  top: 0;
+}
+
+.player-cards-left-position {
+  /* top: 0; */
+  top: 7rem;
+}
+
+.player-eticheta-nume-position {
+  bottom: -15px;
+}
+/* .central-line {
+  background-color: red;
+  display: flex;
+}
+
+.the-stock {
+  background-color: aqua;
+}
+
+.center-stack {
+  background-color: green;
+} */
