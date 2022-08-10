@@ -1,0 +1,5 @@
+#displaying-a-card {
+  background-image: url("Photos/playing-card.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
