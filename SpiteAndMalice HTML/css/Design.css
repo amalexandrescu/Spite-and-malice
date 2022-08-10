@@ -1,0 +1,206 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* 10px / 16px = 0.625 = 62.5% */
+  /* Percentage of user's browser font-size setting */
+  /* 1rem = 10px, different than the default where 1rem = 16px */
+  font-size: 62.5%;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  color: #555;
+  background-color: #ee9a69;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.table {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 3fr 2fr 3fr;
+  gap: 1rem;
+  padding: 5rem 5rem;
+
+  /*background-color: red;*/
+}
+
+.one {
+  background-color: pink;
+}
+
+.two {
+  background-color: greenyellow;
+}
+
+.three {
+  background-color: tomato;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.four {
+  background-color: violet;
+}
+
+.extra-wide-opponent {
+  background-color: lemonchiffon;
+  grid-column: 5/8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.six {
+  background-color: aliceblue;
+}
+
+.eight {
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.nine {
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15rem;
+}
+
+.ten {
+  background-color: aliceblue;
+}
+
+.c11 {
+  background-color: aliceblue;
+}
+
+.c12 {
+  background-color: aliceblue;
+}
+.c13 {
+  background-color: aliceblue;
+}
+
+.c14 {
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15rem;
+}
+
+.extra-wide-player {
+  background-color: powderblue;
+  grid-column: 1 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.card-to-go {
+  height: 50%;
+  width: 25%;
+  background-color: hotpink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.the-actual-card-to-go {
+  background-color: lightsalmon;
+  flex: 1;
+  width: 100%;
+}
+
+.cards-left-to-go {
+  background-color: lightskyblue;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  width: 100%;
+}
+
+.cards-available {
+  height: 50%;
+  width: 75%;
+  background-color: greenyellow;
+  display: flex;
+  flex-direction: row;
+}
+
+.half-card {
+  background-color: lightgrey;
+  flex: 1;
+  /* height: 100%;
+  width: 100%; */
+}
+
+.full-card {
+  flex: 2;
+  background-color: violet;
+}
+
+.c16 {
+  background-color: aliceblue;
+}
+
+.c17 {
+  background-color: aliceblue;
+}
+
+.side-stack-label-number-opponent {
+  background-color: palegreen;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.side-stack-container {
+  background-color: pink;
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-stack-label-number-player {
+  background-color: palegreen;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.side-stack-card {
+  border: 0.5rem solid #69cfee;
+  flex: 1;
+}
+
+/*
+.opponent-name-box {
+  text-transform: uppercase;
+  
+  border: 0.5rem solid #8f5c3f;
+}
+*/
