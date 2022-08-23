@@ -167,3 +167,27 @@ export class FullCenterStack {
     return fullArray;
   }
 }
+
+export class DeckOfCards {
+  deckOfCards;
+
+  constructor(customDeckOfCards) {
+    this.deckOfCards = customDeckOfCards;
+  }
+
+  getTopCardFromDeckOfCards() {
+    return this.deckOfCards[this.deckOfCards.length - 1];
+  }
+
+  removeTopCardFromDeckOfCards() {
+    this.deckOfCards.pop(this.deckOfCards[this.deckOfCards.length - 1]);
+  }
+
+  getRemainingCardsFromDeckOfCards() {
+    return this.deckOfCards;
+  }
+
+  mergeArrayToDeckOfCards(cards) {
+    this.deckOfCards.push(...cards);
+  }
+}

@@ -113,6 +113,82 @@ for (let el of playerCardElements) {
   el.addEventListener("click", highlight);
 }
 
+const testArray = [
+  { number: 1, suite: "spades" },
+  { number: 2, suite: "diamonds" },
+  { number: 3, suite: "diamonds" },
+  { number: 4, suite: "spades" },
+  { number: 5, suite: "hearts" },
+];
+
+for (let i = 0; i <= 4; i++) {
+  let number = testArray[i].number;
+  let suite = testArray[i].suite;
+  console.log(number);
+  console.log(suite);
+  playerCardElements[
+    i
+  ].style.backgroundImage = `url(Photos/${number}-${suite}.png)`;
+}
+
+class DeckOfCards {
+  constructor() {
+    for (let deck = 0; deck < 2; deck++) {
+      for (let card = 0; card < 13; card++) {
+        theDeck[objNumber] = {
+          color: "spades",
+          number: card + 1,
+          id: deck + 1,
+        };
+
+        theDeck[objNumber + 1] = {
+          color: "hearts",
+          number: card + 1,
+          id: deck + 1,
+        };
+
+        theDeck[objNumber + 2] = {
+          color: "diamonds",
+          number: card + 1,
+          id: deck + 1,
+        };
+
+        theDeck[objNumber + 3] = {
+          color: "clubs",
+          number: card + 1,
+          id: deck + 1,
+        };
+        objNumber += 4;
+      }
+    }
+  }
+}
+
+/*
+const player = {
+  hand: new PlayerHand(),
+  sideStacks: [new SideStack(), new SideStack()],
+  cardToGo: new CardTOGo
+}
+
+getPlayerHand() => PlayerHand
+
+daca cardIndex este -1 atunci getMoves for top card din cardsToGo
+getMovesForCard(cardIndex) => array cu care center stacks se poate
+
+playCardToCenterStack(cardIndex, centerStackIndex) 
+
+functia asta treuie sa schimbi si jucatoru 
+playCardToSideStack(cardIndex, sideStackIndex)
+
+
+se uita prin center stacks si apoi daca e unu plin il baga inapoi in pachet si face clearImmediat
+flushCenterStacks() 
+
+
+
+*/
+
 // let opponentsCards = document.querySelectorAll("player-hand-opponent");
 // console.log(opponentsCards);
 

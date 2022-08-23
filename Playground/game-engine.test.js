@@ -6,6 +6,7 @@ import {
   CenterStack,
   EmptyCenterStack,
   FullCenterStack,
+  DeckOfCards,
 } from "./game-engine";
 
 describe("game-engine", () => {
@@ -336,5 +337,51 @@ describe("FullCenterStack", () => {
         { number: 12, suite: "clubs" },
       ])
     ).toEqual([]);
+  });
+});
+
+describe("DeckOfCards", () => {
+  let deckOfCards;
+
+  const customDeckOfCards = [
+    { number: 5, suite: "hearts" },
+    { number: 10, suite: "clubs" },
+    { number: 7, suite: "diamonds" },
+    { number: 4, suite: "spades" },
+  ];
+
+  beforeEach(() => {
+    deckOfCards = new DeckOfCards([...customDeckOfCards]);
+  });
+
+  it("should get the top card", () => {
+    expect(deckOfCards.getTopCardFromDeckOfCards()).toEqual({
+      number: 4,
+      suite: "spades",
+    });
+  });
+
+  it("should remove the top card", () => {
+    deckOfCards.removeTopCardFromDeckOfCards();
+    expect(deckOfCards.getRemainingCardsFromDeckOfCards()).toEqual([
+      { number: 5, suite: "hearts" },
+      { number: 10, suite: "clubs" },
+      { number: 7, suite: "diamonds" },
+    ]);
+  });
+
+  it("should merge a new array to the deck of cards", () => {
+    deckOfCards.mergeArrayToDeckOfCards([
+      { number: 6, suite: "hearts" },
+      { number: 1, suite: "hearts" },
+    ]);
+    expect(deckOfCards.getRemainingCardsFromDeckOfCards()).toEqual([
+      { number: 5, suite: "hearts" },
+      { number: 10, suite: "clubs" },
+      { number: 7, suite: "diamonds" },
+      { number: 4, suite: "spades" },
+      { number: 6, suite: "hearts" },
+      { number: 1, suite: "hearts" },
+    ]);
   });
 });
