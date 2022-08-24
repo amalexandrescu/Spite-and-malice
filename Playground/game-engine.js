@@ -30,15 +30,15 @@ export class CardsToGo {
     return this.remainingCards;
   }
 
-  countRemainingCards() {
+  countRemainingCardsToGo() {
     return this.remainingCards.length;
   }
 
-  getTopCard() {
+  getTopCardToGo() {
     return this.remainingCards[this.remainingCards.length - 1];
   }
 
-  removeTopCard() {
+  removeTopCardToGo() {
     return this.remainingCards.pop();
   }
 }
@@ -169,10 +169,22 @@ export class FullCenterStack {
 }
 
 export class DeckOfCards {
-  deckOfCards;
+  deckOfCards = [];
+  suits = ["spades", "hearts", "clubs", "diamonds"];
 
   constructor(customDeckOfCards) {
-    this.deckOfCards = customDeckOfCards;
+    for (let deck = 0; deck < 2; deck++) {
+      for (let card = 0; card < 13; card++) {
+        this.suits.forEach((suit) => {
+          this.deckOfCards.push({
+            color: suit,
+            number: card + 1,
+            id: deck + 1,
+          });
+        });
+      }
+    }
+    // this.deckOfCards = customDeckOfCards;
   }
 
   getTopCardFromDeckOfCards() {
@@ -183,11 +195,190 @@ export class DeckOfCards {
     this.deckOfCards.pop(this.deckOfCards[this.deckOfCards.length - 1]);
   }
 
+  extractCards(numberOfCards) {
+    const extractedCards = [];
+    for (let counter = 0; counter < numberOfCards; counter++) {
+      extractedCards.push(
+        this.deckOfCards.pop(this.deckOfCards[this.deckOfCards.length - 1])
+      );
+    }
+
+    return extractedCards;
+  }
+
   getRemainingCardsFromDeckOfCards() {
     return this.deckOfCards;
   }
 
   mergeArrayToDeckOfCards(cards) {
     this.deckOfCards.push(...cards);
+  }
+}
+
+export class GameEngineAlexis {
+  deckOfCards;
+  initialPlayerOne;
+  initialOpponent;
+  centerStacks;
+
+  constructor() {
+    initDeck();
+    initPlayerOne();
+    initPlayerSideStacks();
+    initCenterStacks();
+    initOpponent();
+    initOpponentSideStacks();
+  }
+
+  initDeck() {
+    this.deckOfCards = new DeckOfCards();
+  }
+
+  initPlayerOne() {
+    const mycards = this.deckOfCards.extractCards(20);
+    const cardsInHand = this.deckOfCards.extractCards(5);
+    this.deckOfCards.getRemainingCardsFromDeckOfCards();
+    const cardsToGoPlayer = new CardsToGo(mycards);
+    cardsToGoPlayer.getRemainingCards();
+    const playerHand = new CardsAvailable(cardsInHand);
+    playerHand.getRemainingAvailableCards();
+    this.initialPlayerOne = {
+      hand: playerHand,
+      cardsToGo: cardsToGoPlayer,
+    };
+  }
+
+  initOpponent() {
+    const opponentCards = this.deckOfCards.extractCards(20);
+    const cardsInOpponentHand = this.deckOfCards.extractCards(5);
+    this.deckOfCards.getRemainingCardsFromDeckOfCards();
+    const cardsToGoOpponent = new CardsToGo(opponentCards);
+    cardsToGoOpponent.getRemainingCards();
+    const opponentHand = new CardsAvailable(cardsInOpponentHand);
+    opponentHand.getRemainingAvailableCards();
+    this.initialOpponent = {
+      hand: opponentHand,
+      cardsToGo: cardsToGoOpponent,
+    };
+  }
+
+  initPlayerSideStacks() {
+    const playerSideStack1 = new SideStack([]);
+    const playerSideStack2 = new SideStack([]);
+    const playerSideStack3 = new SideStack([]);
+    const playerSideStack4 = new SideStack([]);
+    const playerStacks = [
+      playerSideStack1,
+      playerSideStack2,
+      playerSideStack3,
+      playerSideStack4,
+    ];
+    this.initialPlayerOne.sideStacks = playerStacks;
+  }
+
+  initOpponentSideStacks() {
+    const opponentSideStack1 = new SideStack([]);
+    const opponentSideStack2 = new SideStack([]);
+    const opponentSideStack3 = new SideStack([]);
+    const opponentSideStack4 = new SideStack([]);
+    const opponentStacks = [
+      opponentSideStack1,
+      opponentSideStack2,
+      opponentSideStack3,
+      opponentSideStack4,
+    ];
+    this.initialOpponent.sideStacks = opponentStacks;
+  }
+
+  initCenterStacks() {
+    const centerStack1 = new EmptyCenterStack([]);
+    const centerStack2 = new EmptyCenterStack([]);
+    const centerStack3 = new EmptyCenterStack([]);
+    const centerStack4 = new EmptyCenterStack([]);
+    this.centerStacks = [
+      centerStack1,
+      centerStack2,
+      centerStack3,
+      centerStack4,
+    ];
+  }
+
+  shuffle(array) {
+    for (let index = array.length - 1; index > 0; index--) {
+      const randomIndex = Math.floor(Math.random() * (index + 1));
+      const copyArrayElement = array[index];
+      array[index] = array[randomIndex];
+      array[randomIndex] = copyArrayElement;
+    }
+    return array;
+  }
+
+  availableCenterStackToMoveCard(card, centerStacksArray) {
+    let possibleStacksToMove = [];
+    for (
+      let counterCenterStack = 0;
+      counterCenterStack < 4;
+      counterCenterStack++
+    ) {
+      if (
+        centerStacksArray[
+          counterCenterStack
+        ].verifyAddFirstCardToEmptyCenterStack(card) ||
+        centerStacksArray[counterCenterStack].verifyAddCardToCenterStack(card)
+      ) {
+        possibleStacksToMove.push(counterCenterStack + 1);
+      }
+    }
+    return possibleStacksToMove;
+  }
+
+  playerRound() {
+    let possibleCenterStacksToMove = [];
+    let copyOfFullCenterStack = [];
+    let playerTopCardToGo = this.initialPlayerOne.cardsToGo.getTopCardToGo();
+    while (
+      (this.initialPlayerOne.cardsToGo.length >= 0 &&
+        verifyAddFirstCardToEmptyCenterStack(playerTopCardToGo)) ||
+      verifyAddCardToCenterStack(playerTopCardToGo)
+    ) {
+      possibleCenterStacksToMove = availableCenterStackToMoveCard(
+        playerTopCardToGo,
+        this.centerStacks
+      );
+
+      if (possibleCenterStacksToMove.length) {
+        this.centerStacks[
+          possibleCenterStacksToMove[0 - 1]
+        ].addCardToCenterStack(playerTopCardToGo);
+        this.initialPlayerOne.cardsToGo.removeTopCardToGo();
+        playerTopCardToGo = this.initialPlayerOne.cardsToGo.getTopCardToGo();
+        if (
+          this.centerStacks[
+            [possibleCenterStacksToMove[0] - 1]
+          ].verifyFullCenterStack()
+        ) {
+          copyOfFullCenterStack = copyValuesFromFullCenterStack(
+            this.centerStacks[possibleCenterStacksToMove[0] - 1]
+          );
+
+          let shuffledCopyOfFullCenterStack = shuffle(copyOfFullCenterStack);
+          this.deckOfCards.mergeArrayToDeckOfCards(
+            shuffledCopyOfFullCenterStack
+          );
+          emptyCenterStack(
+            this.centerStacks[possibleCenterStacksToMove[0] - 1]
+          );
+        }
+      } else if (possibleCenterStacksToMove.length == 0) {
+        this.initialPlayerOne.sideStacks[0].push(this.initialPlayerOne.hand[0]);
+        //randul oponentului
+      }
+
+      this.initialPlayerOne.hand.getRemainingCards();
+      this.initialPlayerOne.cardsToGo.getRemainingCards();
+      this.initialPlayerOne.sideStacks.getRemainingCards();
+    }
+    if (this.initialPlayerOne.cardsToGo.length < 0)
+      console.log("Player One won the game");
   }
 }

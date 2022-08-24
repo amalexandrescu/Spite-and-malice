@@ -1,45 +1,5 @@
-const theDeck = [];
-
-let objNumber = 0;
-
-// deck is the counter for the two decks of card //
-// card is the counter for the cards inside of a deck of cards //
-
-for (let deck = 0; deck < 2; deck++) {
-  for (let card = 0; card < 13; card++) {
-    theDeck[objNumber] = {
-      color: "spades",
-      number: card + 1,
-      id: deck + 1,
-    };
-
-    theDeck[objNumber + 1] = {
-      color: "hearts",
-      number: card + 1,
-      id: deck + 1,
-    };
-
-    theDeck[objNumber + 2] = {
-      color: "diamonds",
-      number: card + 1,
-      id: deck + 1,
-    };
-
-    theDeck[objNumber + 3] = {
-      color: "clubs",
-      number: card + 1,
-      id: deck + 1,
-    };
-    objNumber += 4;
-  }
-}
-
 // making a clone of the original array theDeck. If you change something in clone array, the original array theDeck will not be changed //
-const clone = structuredClone(theDeck);
 
-console.log(theDeck);
-
-console.log(theDeck.length);
 
 // creating a function that shuffles the elements of an array //
 const shuffle = (array) => {
@@ -51,13 +11,6 @@ const shuffle = (array) => {
   }
   return array;
 };
-
-const shuffledClone = shuffle(clone);
-
-const copyOfShuffledClone = structuredClone(shuffledClone);
-
-console.log(shuffledClone);
-console.log(copyOfShuffledClone);
 
 // the length of my object 'theDeck' //
 // console.log(Object.keys(theDeck).length);
@@ -114,55 +67,32 @@ for (let el of playerCardElements) {
 }
 
 const testArray = [
-  { number: 1, suite: "spades" },
-  { number: 2, suite: "diamonds" },
-  { number: 3, suite: "diamonds" },
-  { number: 4, suite: "spades" },
-  { number: 5, suite: "hearts" },
+  { number: 1, suit: "spades" },
+  { number: 2, suit: "diamonds" },
+  { number: 3, suit: "diamonds" },
+  { number: 4, suit: "spades" },
+  { number: 5, suit: "hearts" },
 ];
 
 for (let i = 0; i <= 4; i++) {
   let number = testArray[i].number;
-  let suite = testArray[i].suite;
+  let suit = testArray[i].suit;
   console.log(number);
-  console.log(suite);
+  console.log(suit);
   playerCardElements[
     i
-  ].style.backgroundImage = `url(Photos/${number}-${suite}.png)`;
+  ].style.backgroundImage = `url(Photos/${number}-${suit}.png)`;
 }
 
-class DeckOfCards {
-  constructor() {
-    for (let deck = 0; deck < 2; deck++) {
-      for (let card = 0; card < 13; card++) {
-        theDeck[objNumber] = {
-          color: "spades",
-          number: card + 1,
-          id: deck + 1,
-        };
 
-        theDeck[objNumber + 1] = {
-          color: "hearts",
-          number: card + 1,
-          id: deck + 1,
-        };
+      
 
-        theDeck[objNumber + 2] = {
-          color: "diamonds",
-          number: card + 1,
-          id: deck + 1,
-        };
 
-        theDeck[objNumber + 3] = {
-          color: "clubs",
-          number: card + 1,
-          id: deck + 1,
-        };
-        objNumber += 4;
-      }
-    }
-  }
-}
+
+clasa de GameEngine: constructor: 20 cardstogo, 5cardsavailable
+
+
+
 
 /*
 const player = {

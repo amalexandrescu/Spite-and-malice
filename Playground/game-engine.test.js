@@ -35,8 +35,8 @@ describe("game-engine", () => {
 describe("CardsToGo", () => {
   let cardsToGo;
   const customDeck = [
-    { number: 7, suite: "diamonds" },
-    { number: 4, suite: "hearts" },
+    { number: 7, suit: "diamonds" },
+    { number: 4, suit: "hearts" },
   ];
 
   beforeEach(() => {
@@ -48,17 +48,17 @@ describe("CardsToGo", () => {
   });
 
   it("should tell me how many cards are left", () => {
-    expect(cardsToGo.countRemainingCards()).toEqual(2);
+    expect(cardsToGo.countRemainingCardsToGo()).toEqual(2);
   });
 
   it("should tell you what the top card is", () => {
-    expect(cardsToGo.getTopCard()).toEqual({ number: 4, suite: "hearts" });
+    expect(cardsToGo.getTopCardToGo()).toEqual({ number: 4, suit: "hearts" });
   });
 
   it("you should be able to remove the top card", () => {
-    cardsToGo.removeTopCard();
+    cardsToGo.removeTopCardToGo();
     expect(cardsToGo.getRemainingCards()).toEqual([
-      { number: 7, suite: "diamonds" },
+      { number: 7, suit: "diamonds" },
     ]);
   });
 });
@@ -66,11 +66,11 @@ describe("CardsToGo", () => {
 describe("CardsAvailable", () => {
   let cardsAvailable;
   const customCardsAvailable = [
-    { number: 5, suite: "spades" },
-    { number: 10, suite: "diamonds" },
-    { number: 4, suite: "spades" },
-    { number: 3, suite: "hearts" },
-    { number: 2, suite: "clubs" },
+    { number: 5, suit: "spades" },
+    { number: 10, suit: "diamonds" },
+    { number: 4, suit: "spades" },
+    { number: 3, suit: "hearts" },
+    { number: 2, suit: "clubs" },
   ];
 
   beforeEach(() => {
@@ -92,26 +92,26 @@ describe("CardsAvailable", () => {
 
     cardsAvailable.removeIndexElement(3);
     expect(cardsAvailable.getRemainingAvailableCards()).toEqual([
-      { number: 5, suite: "spades" },
-      { number: 10, suite: "diamonds" },
-      { number: 4, suite: "spades" },
-      { number: 2, suite: "clubs" },
+      { number: 5, suit: "spades" },
+      { number: 10, suit: "diamonds" },
+      { number: 4, suit: "spades" },
+      { number: 2, suit: "clubs" },
     ]);
   });
 
   it("should insert cards in the player's remaining available cards ", () => {
     cardsAvailable.addCardToCardsAvailablePlayer({
       number: 3,
-      suite: "hearts",
+      suit: "hearts",
     });
     expect(cardsAvailable.getRemainingAvailableCards()).toEqual([
-      { number: 5, suite: "spades" },
-      { number: 10, suite: "diamonds" },
-      { number: 4, suite: "spades" },
-      { number: 3, suite: "hearts" },
-      { number: 2, suite: "clubs" },
-      { number: 3, suite: "hearts" },
-      //   { number: 6, suite: "diamonds" },
+      { number: 5, suit: "spades" },
+      { number: 10, suit: "diamonds" },
+      { number: 4, suit: "spades" },
+      { number: 3, suit: "hearts" },
+      { number: 2, suit: "clubs" },
+      { number: 3, suit: "hearts" },
+      //   { number: 6, suit: "diamonds" },
     ]);
   });
 
@@ -119,18 +119,18 @@ describe("CardsAvailable", () => {
     cardsAvailable.addCardToCardsAvailablePlayer([
       {
         number: 4,
-        suite: "hearts",
+        suit: "hearts",
       },
-      { number: 6, suite: "diamonds" },
+      { number: 6, suit: "diamonds" },
     ]);
     expect(cardsAvailable.getRemainingAvailableCards()).toEqual([
-      { number: 5, suite: "spades" },
-      { number: 10, suite: "diamonds" },
-      { number: 4, suite: "spades" },
-      { number: 3, suite: "hearts" },
-      { number: 2, suite: "clubs" },
-      { number: 4, suite: "hearts" },
-      { number: 6, suite: "diamonds" },
+      { number: 5, suit: "spades" },
+      { number: 10, suit: "diamonds" },
+      { number: 4, suit: "spades" },
+      { number: 3, suit: "hearts" },
+      { number: 2, suit: "clubs" },
+      { number: 4, suit: "hearts" },
+      { number: 6, suit: "diamonds" },
     ]);
   });
 });
@@ -138,12 +138,12 @@ describe("CardsAvailable", () => {
 describe("SideStack", () => {
   let sideStack;
   const customSideStack = [
-    { number: 5, suite: "spades" },
-    { number: 10, suite: "diamonds" },
-    { number: 4, suite: "spades" },
-    { number: 3, suite: "hearts" },
-    { number: 2, suite: "clubs" },
-    { number: 6, suite: "diamonds" },
+    { number: 5, suit: "spades" },
+    { number: 10, suit: "diamonds" },
+    { number: 4, suit: "spades" },
+    { number: 3, suit: "hearts" },
+    { number: 2, suit: "clubs" },
+    { number: 6, suit: "diamonds" },
   ];
 
   beforeEach(() => {
@@ -159,27 +159,27 @@ describe("SideStack", () => {
   });
 
   it("should insert a card at the end of the side stack", () => {
-    sideStack.addCardToSideStack({ number: 8, suite: "clubs" });
+    sideStack.addCardToSideStack({ number: 8, suit: "clubs" });
     expect(sideStack.getRemainingSideStack()).toEqual([
-      { number: 5, suite: "spades" },
-      { number: 10, suite: "diamonds" },
-      { number: 4, suite: "spades" },
-      { number: 3, suite: "hearts" },
-      { number: 2, suite: "clubs" },
-      { number: 6, suite: "diamonds" },
-      { number: 8, suite: "clubs" },
+      { number: 5, suit: "spades" },
+      { number: 10, suit: "diamonds" },
+      { number: 4, suit: "spades" },
+      { number: 3, suit: "hearts" },
+      { number: 2, suit: "clubs" },
+      { number: 6, suit: "diamonds" },
+      { number: 8, suit: "clubs" },
     ]);
   });
 
   it("should remove the last card from the side stack", () => {
     sideStack.removeSideStackCard();
     expect(sideStack.getRemainingSideStack()).toEqual([
-      { number: 5, suite: "spades" },
-      { number: 10, suite: "diamonds" },
-      { number: 4, suite: "spades" },
-      { number: 3, suite: "hearts" },
-      { number: 2, suite: "clubs" },
-      { number: 6, suite: "diamonds" },
+      { number: 5, suit: "spades" },
+      { number: 10, suit: "diamonds" },
+      { number: 4, suit: "spades" },
+      { number: 3, suit: "hearts" },
+      { number: 2, suit: "clubs" },
+      { number: 6, suit: "diamonds" },
     ]);
   });
 });
@@ -188,11 +188,11 @@ describe("CenterStack", () => {
   let centerStack;
 
   const customCenterStack = [
-    { number: 1, suite: "diamonds" },
-    { number: 2, suite: "hearts" },
-    { number: 3, suite: "clubs" },
-    { number: 4, suite: "hearts" },
-    { number: 5, suite: "spades" },
+    { number: 1, suit: "diamonds" },
+    { number: 2, suit: "hearts" },
+    { number: 3, suit: "clubs" },
+    { number: 4, suit: "hearts" },
+    { number: 5, suit: "spades" },
   ];
 
   beforeEach(() => {
@@ -201,11 +201,11 @@ describe("CenterStack", () => {
 
   it("should getRemainingCenterStackCards", () => {
     expect(centerStack.getRemainingCenterStackCards()).toEqual([
-      { number: 1, suite: "diamonds" },
-      { number: 2, suite: "hearts" },
-      { number: 3, suite: "clubs" },
-      { number: 4, suite: "hearts" },
-      { number: 5, suite: "spades" },
+      { number: 1, suit: "diamonds" },
+      { number: 2, suit: "hearts" },
+      { number: 3, suit: "clubs" },
+      { number: 4, suit: "hearts" },
+      { number: 5, suit: "spades" },
     ]);
   });
 
@@ -214,27 +214,27 @@ describe("CenterStack", () => {
   });
 
   it("should be able to add a card", () => {
-    centerStack.addCardToCenterStack({ number: 6, suite: "hearts" });
+    centerStack.addCardToCenterStack({ number: 6, suit: "hearts" });
     expect(centerStack.getRemainingCenterStackCards()).toEqual([
-      { number: 1, suite: "diamonds" },
-      { number: 2, suite: "hearts" },
-      { number: 3, suite: "clubs" },
-      { number: 4, suite: "hearts" },
-      { number: 5, suite: "spades" },
-      { number: 6, suite: "hearts" },
+      { number: 1, suit: "diamonds" },
+      { number: 2, suit: "hearts" },
+      { number: 3, suit: "clubs" },
+      { number: 4, suit: "hearts" },
+      { number: 5, suit: "spades" },
+      { number: 6, suit: "hearts" },
     ]);
   });
 
   it("should give the top card from centerStack", () => {
     expect(centerStack.getCenterStackTopCard()).toEqual({
       number: 5,
-      suite: "spades",
+      suit: "spades",
     });
   });
 
   it("should verify if a card can be added", () => {
     expect(
-      centerStack.verifyAddCardToCenterStack({ number: 7, suite: "clubs" })
+      centerStack.verifyAddCardToCenterStack({ number: 7, suit: "clubs" })
     ).toEqual(false);
   });
 
@@ -260,7 +260,7 @@ describe("EmptyCenterStack", () => {
     expect(
       emptyCenterStack.verifyAddFirstCardToEmptyCenterStack({
         number: 1,
-        suite: "hearts",
+        suit: "hearts",
       })
     ).toEqual(true);
   });
@@ -270,18 +270,18 @@ describe("FullCenterStack", () => {
   let fullCenterStack;
 
   const customFullCenterStack = [
-    { number: 1, suite: "diamonds" },
-    { number: 2, suite: "hearts" },
-    { number: 3, suite: "clubs" },
-    { number: 4, suite: "hearts" },
-    { number: 5, suite: "spades" },
-    { number: 6, suite: "hearts" },
-    { number: 7, suite: "clubs" },
-    { number: 8, suite: "diamonds" },
-    { number: 9, suite: "hearts" },
-    { number: 10, suite: "spades" },
-    { number: 11, suite: "hearts" },
-    { number: 12, suite: "clubs" },
+    { number: 1, suit: "diamonds" },
+    { number: 2, suit: "hearts" },
+    { number: 3, suit: "clubs" },
+    { number: 4, suit: "hearts" },
+    { number: 5, suit: "spades" },
+    { number: 6, suit: "hearts" },
+    { number: 7, suit: "clubs" },
+    { number: 8, suit: "diamonds" },
+    { number: 9, suit: "hearts" },
+    { number: 10, suit: "spades" },
+    { number: 11, suit: "hearts" },
+    { number: 12, suit: "clubs" },
   ];
 
   beforeEach(() => {
@@ -291,50 +291,50 @@ describe("FullCenterStack", () => {
   it("should copy the values from a full center stack in a different array", () => {
     expect(
       fullCenterStack.copyValuesFromFullCenterStack([
-        { number: 1, suite: "diamonds" },
-        { number: 2, suite: "hearts" },
-        { number: 3, suite: "clubs" },
-        { number: 4, suite: "hearts" },
-        { number: 5, suite: "spades" },
-        { number: 6, suite: "hearts" },
-        { number: 7, suite: "clubs" },
-        { number: 8, suite: "diamonds" },
-        { number: 9, suite: "hearts" },
-        { number: 10, suite: "spades" },
-        { number: 11, suite: "hearts" },
-        { number: 12, suite: "clubs" },
+        { number: 1, suit: "diamonds" },
+        { number: 2, suit: "hearts" },
+        { number: 3, suit: "clubs" },
+        { number: 4, suit: "hearts" },
+        { number: 5, suit: "spades" },
+        { number: 6, suit: "hearts" },
+        { number: 7, suit: "clubs" },
+        { number: 8, suit: "diamonds" },
+        { number: 9, suit: "hearts" },
+        { number: 10, suit: "spades" },
+        { number: 11, suit: "hearts" },
+        { number: 12, suit: "clubs" },
       ])
     ).toEqual([
-      { number: 1, suite: "diamonds" },
-      { number: 2, suite: "hearts" },
-      { number: 3, suite: "clubs" },
-      { number: 4, suite: "hearts" },
-      { number: 5, suite: "spades" },
-      { number: 6, suite: "hearts" },
-      { number: 7, suite: "clubs" },
-      { number: 8, suite: "diamonds" },
-      { number: 9, suite: "hearts" },
-      { number: 10, suite: "spades" },
-      { number: 11, suite: "hearts" },
-      { number: 12, suite: "clubs" },
+      { number: 1, suit: "diamonds" },
+      { number: 2, suit: "hearts" },
+      { number: 3, suit: "clubs" },
+      { number: 4, suit: "hearts" },
+      { number: 5, suit: "spades" },
+      { number: 6, suit: "hearts" },
+      { number: 7, suit: "clubs" },
+      { number: 8, suit: "diamonds" },
+      { number: 9, suit: "hearts" },
+      { number: 10, suit: "spades" },
+      { number: 11, suit: "hearts" },
+      { number: 12, suit: "clubs" },
     ]);
   });
 
   it("should empty the center stack if full", () => {
     expect(
       fullCenterStack.emptyCenterStack([
-        { number: 1, suite: "diamonds" },
-        { number: 2, suite: "hearts" },
-        { number: 3, suite: "clubs" },
-        { number: 4, suite: "hearts" },
-        { number: 5, suite: "spades" },
-        { number: 6, suite: "hearts" },
-        { number: 7, suite: "clubs" },
-        { number: 8, suite: "diamonds" },
-        { number: 9, suite: "hearts" },
-        { number: 10, suite: "spades" },
-        { number: 11, suite: "hearts" },
-        { number: 12, suite: "clubs" },
+        { number: 1, suit: "diamonds" },
+        { number: 2, suit: "hearts" },
+        { number: 3, suit: "clubs" },
+        { number: 4, suit: "hearts" },
+        { number: 5, suit: "spades" },
+        { number: 6, suit: "hearts" },
+        { number: 7, suit: "clubs" },
+        { number: 8, suit: "diamonds" },
+        { number: 9, suit: "hearts" },
+        { number: 10, suit: "spades" },
+        { number: 11, suit: "hearts" },
+        { number: 12, suit: "clubs" },
       ])
     ).toEqual([]);
   });
@@ -344,10 +344,10 @@ describe("DeckOfCards", () => {
   let deckOfCards;
 
   const customDeckOfCards = [
-    { number: 5, suite: "hearts" },
-    { number: 10, suite: "clubs" },
-    { number: 7, suite: "diamonds" },
-    { number: 4, suite: "spades" },
+    { number: 5, suit: "hearts" },
+    { number: 10, suit: "clubs" },
+    { number: 7, suit: "diamonds" },
+    { number: 4, suit: "spades" },
   ];
 
   beforeEach(() => {
@@ -357,31 +357,42 @@ describe("DeckOfCards", () => {
   it("should get the top card", () => {
     expect(deckOfCards.getTopCardFromDeckOfCards()).toEqual({
       number: 4,
-      suite: "spades",
+      suit: "spades",
     });
   });
 
   it("should remove the top card", () => {
     deckOfCards.removeTopCardFromDeckOfCards();
     expect(deckOfCards.getRemainingCardsFromDeckOfCards()).toEqual([
-      { number: 5, suite: "hearts" },
-      { number: 10, suite: "clubs" },
-      { number: 7, suite: "diamonds" },
+      { number: 5, suit: "hearts" },
+      { number: 10, suit: "clubs" },
+      { number: 7, suit: "diamonds" },
+    ]);
+  });
+
+  it("should extract a number of cards from the deck", () => {
+    expect(deckOfCards.extractCards(3)).toEqual([
+      { number: 4, suit: "spades" },
+      { number: 7, suit: "diamonds" },
+      { number: 10, suit: "clubs" },
+    ]);
+    expect(deckOfCards.getRemainingCardsFromDeckOfCards()).toEqual([
+      { number: 5, suit: "hearts" },
     ]);
   });
 
   it("should merge a new array to the deck of cards", () => {
     deckOfCards.mergeArrayToDeckOfCards([
-      { number: 6, suite: "hearts" },
-      { number: 1, suite: "hearts" },
+      { number: 6, suit: "hearts" },
+      { number: 1, suit: "hearts" },
     ]);
     expect(deckOfCards.getRemainingCardsFromDeckOfCards()).toEqual([
-      { number: 5, suite: "hearts" },
-      { number: 10, suite: "clubs" },
-      { number: 7, suite: "diamonds" },
-      { number: 4, suite: "spades" },
-      { number: 6, suite: "hearts" },
-      { number: 1, suite: "hearts" },
+      { number: 5, suit: "hearts" },
+      { number: 10, suit: "clubs" },
+      { number: 7, suit: "diamonds" },
+      { number: 4, suit: "spades" },
+      { number: 6, suit: "hearts" },
+      { number: 1, suit: "hearts" },
     ]);
   });
 });
