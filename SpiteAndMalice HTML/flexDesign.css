@@ -107,6 +107,14 @@ body {
   overflow: hidden;
 }
 
+.first-card {
+  /* position: absolute; */
+}
+
+.copy-of-cards-available-player {
+  position: relative;
+}
+
 .second-card {
   position: absolute;
   left: 4rem;
