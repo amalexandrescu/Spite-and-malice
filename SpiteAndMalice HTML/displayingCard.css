@@ -1,5 +1,5 @@
-#displaying-a-card {
-  background-image: url("Photos/playing-card.png");
+.displaying-a-card {
+  /* background-image: url("Photos/1-spades.png"); */
   background-size: cover;
   background-repeat: no-repeat;
 }

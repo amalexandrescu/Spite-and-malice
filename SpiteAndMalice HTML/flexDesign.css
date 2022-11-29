@@ -107,6 +107,14 @@ body {
   overflow: hidden;
 }
 
+.first-card {
+  /* position: absolute; */
+}
+
+.copy-of-cards-available-player {
+  position: relative;
+}
+
 .second-card {
   position: absolute;
   left: 4rem;
@@ -289,6 +297,12 @@ body {
 .player-eticheta-nume-position {
   bottom: -15px;
 }
+
+.display-card-test {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 /* .central-line {
   background-color: red;
   display: flex;
